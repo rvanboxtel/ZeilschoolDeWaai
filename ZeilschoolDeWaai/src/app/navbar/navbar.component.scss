@@ -19,10 +19,12 @@
 
 
 .menu {
+  display:block;
   float: left;
   width: 20%;
   background-color: aliceblue;
-  height:150%;
+  min-height:575px;
+  max-height: 150%;
 }
 
 li {

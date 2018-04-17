@@ -6,13 +6,16 @@ import { LayoutModule } from '@progress/kendo-angular-layout';
 import { RippleModule } from '@progress/kendo-angular-ripple';
 import { ScrollViewModule } from '@progress/kendo-angular-scrollview';
 import { AppRoutingModule } from './app-routing.module';
-
+import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ContactComponent } from './contact/contact.component';
 import { FooterComponent } from './footer/footer.component';
-
+import { LoginComponent } from './login/login.component';
+import { MederwerkersComponent } from './mederwerkers/mederwerkers.component';
+import { UserService } from './service/user.service';
+import { GuardGuard } from './service/guard.guard';
 
 @NgModule({
   declarations: [
@@ -21,6 +24,8 @@ import { FooterComponent } from './footer/footer.component';
     NavbarComponent,
     ContactComponent,
     FooterComponent,
+    LoginComponent,
+    MederwerkersComponent
   ],
   imports: [
     BrowserModule,
@@ -29,9 +34,10 @@ import { FooterComponent } from './footer/footer.component';
     BrowserAnimationsModule,
     ButtonsModule,
     RippleModule,
-    ScrollViewModule
+    ScrollViewModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [UserService, GuardGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

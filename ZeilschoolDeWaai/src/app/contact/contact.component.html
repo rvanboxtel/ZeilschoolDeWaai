@@ -1,9 +1,28 @@
 <div class="body">
   <app-navbar></app-navbar>
   <div class="inhoud">
+    <div class="zeilschoolfoto">
+      <kendo-scrollview [data]="items"
+                        [width]="width"
+                        [height]="height"
+                        [animate]="true">
+        <ng-template let-item="item">
+          <img src='{{item.url}}' alt='{{item.title}}' [ngStyle]="{minWidth: width}" draggable="false" />
+        </ng-template>
+      </kendo-scrollview>
+    </div>
     <div>
+      <p class="algemeneinfo">
+        <strong>Adres:</strong> Ymedaem 45, 8722 HP Molkwerum
+        <br />
+        <strong>Provincie:</strong> Friesland
+        <br />
+        <strong>Telefoon:</strong> 06 58741594
+        <br />
+        <strong>Email:</strong> info@ZeilschoolDeWaai.nl
+      </p>
     </div>
   </div>
-    <app-footer></app-footer>
+  <app-footer></app-footer>
 
-  </div>
+</div>
