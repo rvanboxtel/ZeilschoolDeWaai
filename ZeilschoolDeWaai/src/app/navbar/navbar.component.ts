@@ -8,9 +8,7 @@ import { Component } from '@angular/core';
 /** Navbar component*/
 export class NavbarComponent {
     /** Navbar ctor */
-    constructor() {
+  constructor() {
 
   }
-  loginstatus: string = "login";
-
 }
