@@ -1,29 +1,24 @@
 <div class="body">
   <app-navbar></app-navbar>
-  <div class="menu">
-    <div class="navigatie">
-      <table>
-        <tbody>
-          <tr>
-            <td>
-              <a href="">Cursussen</a>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <a href="">Galerij</a>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <a href="">Contact</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+  <div class="inhoud">
+
+    <div class="zeilschoolfoto">
+      <kendo-scrollview [data]="items"
+                        [width]="width"
+                        [height]="height"
+                        [endless]="true"
+                        [animate]="true">
+        <ng-template let-item="item">
+          <h2 class="demo-title">{{item.title}}</h2>
+          <img src='{{item.url}}' alt='{{item.title}}' [ngStyle]="{minWidth: width}" draggable="false" />
+        </ng-template>
+      </kendo-scrollview>
+    </div>
+    <div>
+      <p class="algemeneinfo">
+        Hier bij Zeilschool De Waai bieden we drie cursussen en elke cursus duurt 6 dagen het begint op maandag en eindigt op zaterdag. De cursisten worden zondag avond voor de cursus begint verwacht en gaan de zondag ochtend na de curses weg deze dagen verblijven ze bij de zeilschool. Deze cursussen worden tussen 1 april en 1 oktober aangeboden. Wij zeilen niet tijdens de wintermaanden.
+      </p>
     </div>
   </div>
-  <div class="inhoud">
-    <div></div>
-  </div>
+  <app-footer></app-footer>
 </div>

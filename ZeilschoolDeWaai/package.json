@@ -24,6 +24,8 @@
     "@progress/kendo-angular-buttons": "^4.0.0",
     "@progress/kendo-angular-l10n": "^1.1.0",
     "@progress/kendo-angular-layout": "^2.2.1",
+    "@progress/kendo-angular-ripple": "^0.2.5",
+    "@progress/kendo-angular-scrollview": "^1.0.11",
     "@progress/kendo-theme-default": "^2.50.0",
     "core-js": "^2.4.1",
     "node-sass": "^4.8.3",

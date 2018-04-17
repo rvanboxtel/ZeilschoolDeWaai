@@ -1,10 +1,12 @@
 .topbalk {
-  background-color: lightblue;
+  background-color: rgb(135, 206, 235);
   font-family: 'Exo 2', sans-serif;
+  background-image: url(../../assets/header.jpg);
+  background-size: cover;
 }
 
 .logo {
-  margin:auto;
+  margin: auto;
 }
 
 .zeilschool {
@@ -15,8 +17,21 @@
   margin: auto;
 }
 
-.loginbtn {
-  padding: 6px 40px;
+
+.menu {
+  float: left;
+  width: 20%;
+  background-color: aliceblue;
+  height:150%;
+}
+
+li {
+  list-style: none;
+}
+
+.nav {
+  width: 120%;
   font-family: 'Exo 2', sans-serif;
-  font-size: 12pt;
+  font-size: 14pt;
+  margin-left: -40px;
 }
