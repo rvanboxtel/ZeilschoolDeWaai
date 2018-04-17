@@ -1,1 +1,23 @@
-﻿
+.body {
+  font-family: 'Exo 2', sans-serif;
+  font-size:13pt;
+}
+
+.menu {
+  display: inline-block;
+  width: 14%;
+  height:100%;
+  margin: auto;
+  background-color: lightblue;
+}
+
+.navigatie {
+  margin:auto;
+  padding-left:30px;
+}
+
+.inhoud {
+  width: 85%;
+  display: inline-block;
+  height: 100%;
+}
