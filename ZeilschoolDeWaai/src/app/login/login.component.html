@@ -1,10 +1,18 @@
 <div class="body">
   <app-navbar></app-navbar>
   <div class="inhoud">
-    <form>
-      <input name="username" ngModel required #username="ngModel"><br />
-      <input name="password" ngModel required #password="ngModel" type="password">
-      <button>Submit</button>
+    <form (submit)="loginUser($event)">
+      <div class="input">
+        <label>Username</label><br />
+        <input type="text">
+      </div>
+      <div class="input">
+        <label>Password</label><br />
+        <input type="password">
+      </div>
+      <div class="input">
+        <input class="k-button" type="submit" value="Login">
+      </div>
     </form>
   </div>
   <app-footer></app-footer>

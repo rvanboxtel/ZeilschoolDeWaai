@@ -15,7 +15,7 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { MederwerkersComponent } from './mederwerkers/mederwerkers.component';
 import { UserService } from './service/user.service';
-import { GuardGuard } from './service/guard.guard';
+import { AuthguardGuard } from './service/authguard.guard';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,7 @@ import { GuardGuard } from './service/guard.guard';
     ScrollViewModule,
     FormsModule
   ],
-  providers: [UserService, GuardGuard],
+  providers: [UserService, AuthguardGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

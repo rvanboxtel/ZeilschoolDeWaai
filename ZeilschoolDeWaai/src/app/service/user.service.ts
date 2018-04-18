@@ -1,7 +1,22 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class UserService {
-  constructor(private http: HttpClient) { }
+
+  private isUserLoggedIn;
+  public username;
+
+  constructor() {
+    this.isUserLoggedIn = false;
+  }
+
+  setUserLoggedIn() {
+    this.isUserLoggedIn = true;
+    this.username = 'developer';
+  }
+
+  getUserLoggedIn() {
+    return this.isUserLoggedIn;
+  }
+
 }
