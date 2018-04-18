@@ -1,1 +1,80 @@
-Yoy are logged in
+<div class="topbalk">
+  <!-- Logo -->
+
+  <div class="logo">
+    <a href=""><img height="150" src="../../assets/logo.png" alt="Zeilschool De Waai" /></a>
+  </div>
+
+</div>
+<div class="menu" kendoRippleContainer>
+  <ul>
+    <li>
+      <a routerLink="" class="nav k-button k-bare">Log uit</a>
+    </li>
+  </ul>
+</div>
+<div class="inhoud">
+  <kendo-tabstrip (tabSelect)="onTabSelect($event)">
+    <kendo-tabstrip-tab [title]="'Overzicht cursisten'" [disabled]="true"></kendo-tabstrip-tab>
+    <kendo-tabstrip-tab [title]="'Overzicht cursussen'" [disabled]="true"></kendo-tabstrip-tab>
+    <kendo-tabstrip-tab [title]="'Overzicht schepen'" [selected]="true">
+      <ng-template kendoTabContent>
+        <form novalidate #myForm="ngForm">
+          <kendo-grid [pageable]="true" [resizable]="true" [sortable]="true"
+                      [kendoGridTemplateEditing]="createNewSchip"
+                      [kendoGridBinding]="vloot"
+                      [pageSize]="10"
+                      [height]="410"
+                      [navigable]="true">
+            <ng-template kendoGridToolbarTemplate>
+              <button kendoGridAddCommand type="button">Add new</button>
+            </ng-template>
+            <kendo-grid-column field="NUMMER" editor="numeric" title="Nummer">
+              <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+                <input [(ngModel)]="dataItem.NUMMER" kendoGridFocusable name="Nummer" class="k-textbox" type="number" required />
+              </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="KLASSE" title="Klasse">
+              <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+                <input [(ngModel)]="dataItem.KLASSE" kendoGridFocusable name="Klasse" class="k-textbox" />
+              </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="NAAM" title="Naam">
+              <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+                <input [(ngModel)]="dataItem.NAAM" kendoGridFocusable name="Naam" class="k-textbox" />
+              </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="AVERIJ" editor="boolean" title="Averij">
+              <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+                <input [(ngModel)]="dataItem.AVERIJ"
+                       name="Averij"
+                       type="checkbox" />
+              </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="SOORTCODE" editor="numeric" title="Soortcode">
+              <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+                <input [(ngModel)]="dataItem.SOORTCODE"
+                       kendoGridFocusable
+                       name="Soortcode"
+                       required
+                       min="1"
+                       max="3"
+                       class="k-textbox"
+                       type="number" />
+              </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-command-column title="command" width="220">
+              <ng-template kendoGridCellTemplate let-isNew="isNew">
+                <button kendoGridEditCommand type="button" class="k-primary">Edit</button>
+                <button kendoGridRemoveCommand type="button">Remove</button>
+                <button kendoGridSaveCommand type="button" [disabled]="myForm.invalid">{{ isNew ? 'Add' : 'Update' }}</button>
+                <button kendoGridCancelCommand type="button">{{ isNew ? 'Discard changes' : 'Cancel' }}</button>
+              </ng-template>
+            </kendo-grid-command-column>
+          </kendo-grid>
+        </form>
+      </ng-template>
+    </kendo-tabstrip-tab>
+  </kendo-tabstrip>
+</div>
+<app-footer></app-footer>

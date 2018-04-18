@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
+import { DialogsModule } from '@progress/kendo-angular-dialog';
+import { HttpModule } from '@angular/http';
+import { GridModule } from '@progress/kendo-angular-grid'
 import { LayoutModule } from '@progress/kendo-angular-layout';
 import { RippleModule } from '@progress/kendo-angular-ripple';
 import { ScrollViewModule } from '@progress/kendo-angular-scrollview';
@@ -16,6 +19,7 @@ import { LoginComponent } from './login/login.component';
 import { MederwerkersComponent } from './mederwerkers/mederwerkers.component';
 import { UserService } from './service/user.service';
 import { AuthguardGuard } from './service/authguard.guard';
+import { DataService } from './service/data.service';
 
 @NgModule({
   declarations: [
@@ -35,9 +39,12 @@ import { AuthguardGuard } from './service/authguard.guard';
     ButtonsModule,
     RippleModule,
     ScrollViewModule,
-    FormsModule
+    FormsModule,
+    DialogsModule,
+    GridModule,
+    HttpModule
   ],
-  providers: [UserService, AuthguardGuard],
+  providers: [UserService, AuthguardGuard, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
