@@ -16,7 +16,7 @@
 <div class="inhoud">
 
   <!-- Verschillende tabstrips om ervoor te zorgen dat je kan kiezen waaruit -->
-  <kendo-tabstrip>
+  <kendo-tabstrip (tabSelect)="onTabSelect($event)">
     <kendo-tabstrip-tab [title]="'Overzicht cursisten'" [disabled]="true"></kendo-tabstrip-tab>
     <kendo-tabstrip-tab [title]="'Overzicht cursussen'" [disabled]="true"></kendo-tabstrip-tab>
     <kendo-tabstrip-tab [title]="'Overzicht schepen'" [selected]="true">
@@ -32,11 +32,11 @@
                         [height]="410"
                         [navigable]="true">
               <ng-template kendoGridToolbarTemplate>
-                <button kendoGridAddCommand type="button">Add new</button>
+                <button kendoButton *ngIf="!opened" (click)="open()">Add new Schip</button>
               </ng-template>
               <kendo-grid-column field="NUMMER" editor="numeric" title="Nummer">
                 <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-                  <input [(ngModel)]="dataItem.NUMMER" kendoGridFocusable name="Nummer" class="k-textbox" type="number" required />
+                  <input [(ngModel)]="dataItem.NUMMER" [disabled]="isNew ? false : true " kendoGridFocusable name="Nummer" class="k-textbox" type="number" required />
                 </ng-template>
               </kendo-grid-column>
               <kendo-grid-column field="KLASSE" title="Klasse">
@@ -80,7 +80,56 @@
           </form>
         </div>
       </ng-template>
+
     </kendo-tabstrip-tab>
   </kendo-tabstrip>
 </div>
 <app-footer></app-footer>
+
+<p *ngIf="dataSaved">Data has been saved</p>
+<kendo-window title="Schip toevoegen" *ngIf="opened" (close)="close()" [minWidth]="250" [width]="450">
+
+  <form class="k-form">
+
+    <label>
+      <span>Nummer schip</span>
+      <input [(ngModel)]="NUMMER" name="Nummer" type="number" />
+    </label>
+    <label>
+      <span>Klasse schip</span>
+      <input [(ngModel)]="KLASSE"
+             name="KLASSE"
+             required
+             min="1"
+             max="3"
+             class="k-textbox"
+             type="number" />
+    </label>
+    <label>
+      <span>Naam schip</span>
+      <input [(ngModel)]="NAAM"
+             name="Naam" />
+    </label>
+    <label>
+      <span>Averij</span>
+      <input [(ngModel)]="AVERIJ"
+             name="Averij"
+             type="checkbox" />
+    </label>
+    <label>
+      <span>Soortcode</span>
+      <input [(ngModel)]="SOORTCODE"
+             name="Soortcode"
+             required
+             min="1"
+             max="3"
+             class="k-textbox"
+             type="number" />
+    </label>
+    <div class="text-right">
+      <button type="button" class="k-button" (click)="close()">Cancel</button>
+      <button type="button" class="k-button k-primary" (click)="submit()">Submit</button>
+    </div>
+  </form>
+
+</kendo-window>

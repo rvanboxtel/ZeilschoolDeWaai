@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
 import { DialogsModule } from '@progress/kendo-angular-dialog';
 import { HttpModule } from '@angular/http';
-import { GridModule } from '@progress/kendo-angular-grid'
+import { GridModule } from '@progress/kendo-angular-grid';
 import { LayoutModule } from '@progress/kendo-angular-layout';
 import { RippleModule } from '@progress/kendo-angular-ripple';
 import { ScrollViewModule } from '@progress/kendo-angular-scrollview';
@@ -19,7 +19,10 @@ import { LoginComponent } from './login/login.component';
 import { MederwerkersComponent } from './mederwerkers/mederwerkers.component';
 import { UserService } from './service/user.service';
 import { AuthguardGuard } from './service/authguard.guard';
-import { DataService } from './service/data.service';
+import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
+import { HttpClient } from '@angular/common/http';
+import { DialogModule } from '@progress/kendo-angular-dialog';
+
 
 
 // Deze pagina is om alle modules en components samen te voegen
@@ -44,9 +47,11 @@ import { DataService } from './service/data.service';
     FormsModule,
     DialogsModule,
     GridModule,
-    HttpModule
+    HttpModule,
+    DropDownsModule,
+    DialogModule
   ],
-  providers: [UserService, AuthguardGuard, DataService],
+  providers: [UserService, AuthguardGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
