@@ -5,7 +5,7 @@ import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
 import { MederwerkersComponent } from './mederwerkers/mederwerkers.component';
 import { AuthguardGuard } from './service/authguard.guard';
-
+// Alle pagina's om erheen te komen
 const routes: Routes = [
   { path: '', component: HomepageComponent, pathMatch: 'full' },
   { path: 'contact', component: ContactComponent },

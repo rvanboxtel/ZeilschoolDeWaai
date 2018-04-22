@@ -14,11 +14,13 @@
   </ul>
 </div>
 <div class="inhoud">
+  <!-- Verschillende tabstrips om ervoor te zorgen dat je kan kiezen waaruit -->
   <kendo-tabstrip (tabSelect)="onTabSelect($event)">
     <kendo-tabstrip-tab [title]="'Overzicht cursisten'" [disabled]="true"></kendo-tabstrip-tab>
     <kendo-tabstrip-tab [title]="'Overzicht cursussen'" [disabled]="true"></kendo-tabstrip-tab>
     <kendo-tabstrip-tab [title]="'Overzicht schepen'" [selected]="true">
       <ng-template kendoTabContent>
+        <!-- Een grid met de mogelijkheid om items toe te voegen, aan te passen en verwijderen -->
         <form novalidate #myForm="ngForm">
           <kendo-grid [pageable]="true" [resizable]="true" [sortable]="true"
                       [kendoGridTemplateEditing]="createNewSchip"

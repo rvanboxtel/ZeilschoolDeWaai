@@ -13,12 +13,21 @@ export class DataService {
   constructor(private http: Http) {
     //this.getSchip();
     //this.getDataSchip();
+    this.getSC();
+    this.getDataSchip();
   }
   getDataSchip() {
-    return this.http.get(this.apiUrl + 'schips').map((res: Response) => res.json())
+    return this.http.get(this.apiUrl + 'schip').map((res: Response) => res.json())
   }
   getSchip() {
     this.getDataSchip().subscribe(data => { console.log(data); this.schip = data });
+  }
+
+  getDataSC() {
+    return this.http.get(this.apiUrl + 'soortcursus').map((res: Response) => res.json())
+  }
+  getSC() {
+    this.getDataSC().subscribe(data => { console.log(data); this.schip = data });
   }
 
   public vloot = [{

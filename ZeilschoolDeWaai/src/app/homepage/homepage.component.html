@@ -1,13 +1,16 @@
 <div class="body">
+  <!-- navigatie en header -->
   <app-navbar></app-navbar>
   <div class="inhoud">
 
+<!-- een switching foto zelf klikken -->
     <div class="zeilschoolfoto">
       <kendo-scrollview [data]="items"
                         [width]="width"
                         [height]="height"
                         [endless]="true"
-                        [animate]="true">
+                        [animate]="true"
+                        [arrows]="true">
         <ng-template let-item="item">
           <h2 class="demo-title">{{item.title}}</h2>
           <img src='{{item.url}}' alt='{{item.title}}' [ngStyle]="{minWidth: width}" draggable="false" />
@@ -17,10 +20,11 @@
     <div>
       <p class="algemeneinfo">
         Hier bij Zeilschool De Waai bieden we drie cursussen en elke cursus duurt 6 dagen het begint op maandag en eindigt op zaterdag. De cursisten worden zondag avond voor de cursus begint verwacht en gaan de zondag ochtend na de curses weg deze dagen verblijven ze bij de zeilschool. Deze cursussen worden tussen 1 april en 1 oktober aangeboden. Wij zeilen niet tijdens de wintermaanden.
-                
+
       </p>
       <img class="kwadraat" width="25%" src="../../assets/kwadraat.jpg" />
     </div>
   </div>
+  <!--footer -->
   <app-footer></app-footer>
 </div>

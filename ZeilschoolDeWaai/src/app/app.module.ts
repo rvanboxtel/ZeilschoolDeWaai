@@ -21,6 +21,8 @@ import { UserService } from './service/user.service';
 import { AuthguardGuard } from './service/authguard.guard';
 import { DataService } from './service/data.service';
 
+
+// Deze pagina is om alle modules en components samen te voegen
 @NgModule({
   declarations: [
     AppComponent,

@@ -1,3 +1,4 @@
+// Model voor schip
 export class schip {
   nummer: number;
   klasse: string;
@@ -5,14 +6,14 @@ export class schip {
   averij: boolean;
   soortcode: number;
 }
-
-export class medewerkers {
-  id: number;
-  gebruikersnaam: string;
-  wachtwoord: string;
-  roepnaam: string;
-  tussenvoegsel: string;
-  achternaam: string;
-  telefoon: string;
-  email: string;
-}
+// model voor medewerkers
+//export class medewerkers {
+//  id: number;
+//  gebruikersnaam: string;
+//  wachtwoord: string;
+//  roepnaam: string;
+//  tussenvoegsel: string;
+//  achternaam: string;
+//  telefoon: string;
+//  email: string;
+//}

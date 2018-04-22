@@ -5,7 +5,7 @@ import { UserService } from './user.service';
 
 @Injectable()
 export class AuthguardGuard implements CanActivate {
-
+  // authenticatie
   constructor(private user: UserService, private router: Router) { }
 
   canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {

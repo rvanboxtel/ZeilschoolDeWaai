@@ -3,6 +3,7 @@ import { DataService } from '../service/data.service';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { schip } from '../service/Models/index';
+import { DataCollection } from '@progress/kendo-angular-grid/dist/es2015/data/data.collection';
 
 @Component({
   selector: 'app-mederwerkers',
@@ -13,6 +14,7 @@ import { schip } from '../service/Models/index';
 export class MederwerkersComponent implements OnInit {
   /** mederwerkers ctor */
   public schip;
+  // Hardgecodeerde data die uiteindelijk uit de database zal komen
   public vloot: any[] = [{
     NUMMER: 500, KLASSE: '16-kwadraat', NAAM: 'Hednrica', AVERIJ: false, SOORTCODE: 1
   }, {
@@ -28,9 +30,14 @@ export class MederwerkersComponent implements OnInit {
   }];
   public klasse;
   public gridData: any[] = this.vloot;
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private data: DataService) {
   }
-  ngOnInit() { }
+  async ngOnInit() {
+    let data = await this.data.getDataSC();
+    console.log(data);
+  }
+
+  // een nieuw schip aan maken
   createNewSchip(): schip {
     return new schip();
   }

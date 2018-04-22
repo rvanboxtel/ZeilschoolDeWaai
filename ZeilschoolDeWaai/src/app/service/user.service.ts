@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class UserService {
-
+  // Om in te loggen is dit nodig
   private isUserLoggedIn;
   public username;
 
