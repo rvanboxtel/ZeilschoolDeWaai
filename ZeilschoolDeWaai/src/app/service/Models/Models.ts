@@ -1,10 +1,10 @@
 // Model voor schip
-export class schip {
-  nummer: number;
-  klasse: string;
-  naam: string;
-  averij: boolean;
-  soortcode: number;
+export interface Schip {
+  NUMMER: number,
+  KLASSE: number,
+  NAAM: string,
+  AVERIJ: boolean,
+  SOORTCODE: number
 }
 // model voor medewerkers
 //export class medewerkers {

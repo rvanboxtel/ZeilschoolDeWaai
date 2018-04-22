@@ -14,6 +14,9 @@
   </ul>
 </div>
 <div class="inhoud">
+  <div ngFor="vloot of vloot">
+    {{vloot.NUMMER}}
+  </div>
   <!-- Verschillende tabstrips om ervoor te zorgen dat je kan kiezen waaruit -->
   <kendo-tabstrip (tabSelect)="onTabSelect($event)">
     <kendo-tabstrip-tab [title]="'Overzicht cursisten'" [disabled]="true"></kendo-tabstrip-tab>
@@ -24,7 +27,7 @@
         <form novalidate #myForm="ngForm">
           <kendo-grid [pageable]="true" [resizable]="true" [sortable]="true"
                       [kendoGridTemplateEditing]="createNewSchip"
-                      [kendoGridBinding]="vloot"
+                      [kendoGridBinding]="gridData"
                       [pageSize]="10"
                       [height]="410"
                       [navigable]="true">
