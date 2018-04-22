@@ -12,24 +12,9 @@ export class DataService {
   schipklasse: any = {};
   private apiUrl = 'http://zeilschoolwebapi.azurewebsites.net/api/'
   constructor(private http: Http) {
-    this.getSchip();
-    this.getDataSchip();
-    this.getSC();
-    this.getDataSchip();
-  }
-  getDataSchip() {
-    return this.http.get(this.apiUrl + 'schips').map((res: Response) => res.json())
-  }
-  getSchip() {
-    this.getDataSchip().subscribe(data => { console.log(data); this.schip = data });
   }
 
-  getDataSC() {
-    return this.http.get(this.apiUrl + 'soortcursus').map((res: Response) => res.json())
-  }
-  getSC() {
-    this.getDataSC().subscribe(data => { console.log(data); this.soortcursus = data });
-  }
+ 
 
   public vloot = [{
     nummer: 500, klasse: '16-kwadraat', naam: 'Hednrica', averij: false, soortcode: 1

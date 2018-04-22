@@ -3,32 +3,51 @@ import { DataService } from '../service/data.service';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Schip } from '../service/Models/index';
-import { DataCollection } from '@progress/kendo-angular-grid/dist/es2015/data/data.collection';
+import { Http, Response, Headers, RequestOptions, RequestMethod } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
 
 @Component({
   selector: 'app-mederwerkers',
   templateUrl: './mederwerkers.component.html',
-  styleUrls: ['./mederwerkers.component.scss']
+  styleUrls: ['./mederwerkers.component.scss'],
+  providers: [DataService]
 })
 /** mederwerkers component*/
 export class MederwerkersComponent implements OnInit {
+  SOORTCODE: any;
+  AVERIJ: any;
+  NAAM: any;
+  KLASSE: any;
+  NUMMER: any;
   /** mederwerkers ctor */
-  public vloot;
-  public klasse;
+  public vloot: any = {};
+  private apiUrl = 'http://zeilschoolwebapi.azurewebsites.net/api/'
   public gridData: any[];
-  constructor(private formBuilder: FormBuilder, private data: DataService) {
+  constructor(private formBuilder: FormBuilder, private data: DataService, private http: Http) {
   }
 
-  async ngOnInit() {
-    let data = await this.data.getDataSchip();
-    console.log(data);
+  ngOnInit() {
+    this.getData();
+  }
+
+  public getData() {
+    this.http.get(this.apiUrl + 'schips')
+      .map((res: Response) => res.json())
+      .subscribe(data => { this.vloot = data; console.log(this.vloot) });
+
   }
   // een nieuw schip aan maken
-  //createNewSchip(): Schip {
-  //  //return new Schip();
-  //}
+  createNewSchip() {
+    let newSchip: Schip = {
+      NUMMER: this.NUMMER,
+      KLASSE: this.KLASSE,
+      NAAM: this.NAAM,
+      AVERIJ: this.AVERIJ,
+      SOORTCODE: this.SOORTCODE
+    };
 
-  public onTabSelect(e) {
-    console.log(e);
+    this.http.post(this.apiUrl + '/schips', newSchip)
   }
 }
