@@ -13,18 +13,15 @@ import { DataCollection } from '@progress/kendo-angular-grid/dist/es2015/data/da
 /** mederwerkers component*/
 export class MederwerkersComponent implements OnInit {
   /** mederwerkers ctor */
-  public vloot: Schip[];
+  public vloot;
   public klasse;
   public gridData: any[];
   constructor(private formBuilder: FormBuilder, private data: DataService) {
   }
-  ngOnInit() {
-    this.getData();
-  }
 
-  async getData() {
-    this.data.getSchepen().subscribe(data => { this.vloot = data });
-    console.log(this.vloot);
+  async ngOnInit() {
+    let data = await this.data.getDataSchip();
+    console.log(data);
   }
   // een nieuw schip aan maken
   //createNewSchip(): Schip {
