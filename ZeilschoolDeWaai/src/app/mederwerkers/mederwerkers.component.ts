@@ -9,6 +9,7 @@ import 'rxjs/add/operator/toPromise';
 import { HttpHandler } from '@angular/common/http/src/backend';
 import { HttpHeaders } from '@angular/common/http/src/headers';
 import { UserService } from '../service/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mederwerkers',
@@ -28,7 +29,7 @@ export class MederwerkersComponent implements OnInit {
   public vloot: any = {};
   private apiUrl = 'http://zeilschoolwebapi.azurewebsites.net/api/'
   public gridData: any[];
-  constructor(private formBuilder: FormBuilder, private http: Http, private user: UserService) {
+  constructor(private formBuilder: FormBuilder, private http: Http, private user: UserService, private router: Router) {
   }
 
   ngOnInit() {
