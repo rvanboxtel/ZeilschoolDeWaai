@@ -103,11 +103,11 @@ export class MederwerkersComponent implements OnInit {
     let body = schip;
     this.vloot.push(body);
     console.log(this.vloot);
-    //return this.http.post(this.apiUrl + 'schips', body, options)
-    //.map((res: Response) => res.json())
-    //.subscribe(data => JSON.stringify(data),
-    //  error => alert(error),
-    //  () => { console.log("finished"); this.getData() });
+    this.http.post(this.apiUrl + 'schips', body, options)
+      .map((res: Response) => res.json())
+      .subscribe(data => JSON.stringify(data),
+      error => alert(error),
+      () => { console.log("finished"); this.getData() });
   }
   verwijdergegeven(value) {
     console.log(value);
