@@ -101,7 +101,6 @@ export class MederwerkersComponent implements OnInit {
       headers: headers
     });
     let body = schip;
-    this.vloot.push(body);
     console.log(this.vloot);
     this.http.post(this.apiUrl + 'schips', body, options)
       .map((res: Response) => res.json())
