@@ -39,7 +39,7 @@
                   <input [(ngModel)]="dataItem.NUMMER" [disabled]="isNew ? false : true " kendoGridFocusable name="Nummer" class="k-textbox" type="number" required />
                 </ng-template>
               </kendo-grid-column>
-              <kendo-grid-column field="KLASSE" title="Klasse">
+              <kendo-grid-column field="KLASSE" editor="numeric" title="Klasse">
                 <ng-template kendoGridEditTemplate let-dataItem="dataItem">
                   <input [(ngModel)]="dataItem.KLASSE" kendoGridFocusable name="Klasse" class="k-textbox" />
                 </ng-template>
@@ -69,11 +69,9 @@
                 </ng-template>
               </kendo-grid-column>
               <kendo-grid-command-column title="command" width="220">
-                <ng-template kendoGridCellTemplate let-isNew="isNew">
-                  <button kendoGridEditCommand type="button" class="k-primary">Edit</button>
-                  <button kendoGridRemoveCommand type="button">Remove</button>
-                  <button kendoGridSaveCommand type="button" [disabled]="myForm.invalid">{{ isNew ? 'Add' : 'Update' }}</button>
-                  <button kendoGridCancelCommand type="button">{{ isNew ? 'Discard changes' : 'Cancel' }}</button>
+                <ng-template kendoGridCellTemplate let-dataItem="dataItem">
+                  <button (click)="edit(dataItem)" type="button" class="k-button">Edit</button>
+                  <button (click)="verwijdergegeven(dataItem.NUMMER)" type="button" class="k-button">Remove</button>
                 </ng-template>
               </kendo-grid-command-column>
             </kendo-grid>
@@ -93,7 +91,7 @@
 
     <label>
       <span>Nummer schip</span>
-      <input [(ngModel)]="NUMMER" name="Nummer" type="number" />
+      <input [(ngModel)]="NUMMER" [disabled]="NewOrEdit === 'edit'" name="Nummer" type="number" />
     </label>
     <label>
       <span>Klasse schip</span>
@@ -128,7 +126,10 @@
     </label>
     <div class="text-right">
       <button type="button" class="k-button" (click)="close()">Cancel</button>
-      <button type="button" class="k-button k-primary" (click)="submit()">Submit</button>
+      <button type="button" *ngIf="NewOrEdit === 'new'" class="k-button k-primary" (click)="submit()">
+        Submit
+      </button>
+      <button type="button" *ngIf="NewOrEdit === 'edit'" class="k-button k-primary" (click)="save()">Opslaan</button>
     </div>
   </form>
 

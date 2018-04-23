@@ -25,6 +25,7 @@ export class MederwerkersComponent implements OnInit {
   NAAM;
   AVERIJ;
   SOORTCODE;
+  NewOrEdit;
   /** mederwerkers ctor */
   public vloot: any = {};
   private apiUrl = 'http://zeilschoolwebapi.azurewebsites.net/api/'
@@ -40,7 +41,6 @@ export class MederwerkersComponent implements OnInit {
     this.http.get(this.apiUrl + 'schips')
       .map((res: Response) => res.json())
       .subscribe(data => { this.vloot = data; console.log(this.vloot) });
-
   }
   // een nieuw schip maken
 
@@ -50,7 +50,20 @@ export class MederwerkersComponent implements OnInit {
 
   public open() {
     this.opened = true;
+    this.NewOrEdit = 'new';
     this.NUMMER = null, this.KLASSE = null, this.NAAM = '', this.AVERIJ = false, this.SOORTCODE = null;
+  }
+
+  public edit(value) {
+    this.opened = true;
+    this.NUMMER = value.NUMMER,
+      this.KLASSE = value.KLASSE,
+      this.NAAM = value.NAAM,
+      this.AVERIJ = value.AVERIJ,
+      this.SOORTCODE = value.SOORTCODE;
+
+    this.NewOrEdit = 'edit';
+    console.log(value);
   }
 
   public submit() {
@@ -66,16 +79,43 @@ export class MederwerkersComponent implements OnInit {
     this.addSchip(schips);
     this.close();
   }
+
+  save() {
+    const schips: Schip = {
+      NUMMER: this.NUMMER,
+      KLASSE: this.KLASSE,
+      NAAM: this.NAAM,
+      AVERIJ: this.AVERIJ,
+      SOORTCODE: this.SOORTCODE
+    }
+    this.close();
+    return this.http.put(this.apiUrl + 'schips/' + this.NUMMER, schips)
+      .subscribe(data => JSON.stringify(data),
+      error => alert(error),
+      () => { console.log("finished"); this.getData() });
+
+  }
   addSchip(schip: any) {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({
       headers: headers
     });
-    let body = JSON.stringify(schip);
-    console.log(JSON.parse(body));
-    return this.http.post(this.apiUrl + 'schips', body, options).map((res: Response) => res.json()).subscribe(data => JSON.stringify(data), error => alert (error), () => console.log("finished"));
+    let body = schip;
+    this.vloot.push(body);
+    console.log(this.vloot);
+    //return this.http.post(this.apiUrl + 'schips', body, options)
+    //.map((res: Response) => res.json())
+    //.subscribe(data => JSON.stringify(data),
+    //  error => alert(error),
+    //  () => { console.log("finished"); this.getData() });
   }
-
+  verwijdergegeven(value) {
+    console.log(value);
+    return this.http.delete(this.apiUrl + 'schips/' + value)
+      .subscribe(data => JSON.stringify(data),
+      error => alert(error),
+      () => { console.log("finished"), this.getData() });
+  }
   logout() {
     this.user.setUserLoggedOut();
     this.router.navigate(['']);

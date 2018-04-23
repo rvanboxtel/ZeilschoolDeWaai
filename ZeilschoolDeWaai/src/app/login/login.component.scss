@@ -12,7 +12,25 @@
   font-family: 'Exo 2', sans-serif;
   font-size: 13pt;
 }
+.middle {
+margin-left: 30%;
+margin-top: 10%;
+font-size: 18pt;
+}
+.verkeerd {
+  margin-left: -15%;
+  color: red;
+}
 
+.k-textbox {
+  color: black;
+}
+.k-button {
+  color: black;
+  margin-top:10px;
+  padding: 10px 30px 10px 30px;
+  text-align: center;
+}
 div.input {
   position: relative;
 }

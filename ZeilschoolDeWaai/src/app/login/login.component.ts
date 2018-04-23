@@ -11,7 +11,7 @@ import { UserService } from '../service/user.service';
 /** Login component*/
 export class LoginComponent implements OnInit {
   constructor(private router: Router, private user: UserService) { }
-
+  verkeerd = false;
   ngOnInit() {
   }
   // om in the loggen
@@ -19,10 +19,11 @@ export class LoginComponent implements OnInit {
     e.preventDefault();
     var username = e.target.elements[0].value;
     var password = e.target.elements[1].value;
-
-    if (username === 'developer' && password === 'dev123') {
-      this.user.setUserLoggedIn();
+    this.user.getUserLogin(username, password);
+    if (this.user.getUserLoggedIn() === true) {
       this.router.navigate(['medewerkers']);
+    } else if (this.user.user !== undefined) {
+      this.verkeerd = true;
     }
   }
 }
