@@ -8,6 +8,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import { HttpHandler } from '@angular/common/http/src/backend';
 import { HttpHeaders } from '@angular/common/http/src/headers';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-mederwerkers',
@@ -27,7 +28,7 @@ export class MederwerkersComponent implements OnInit {
   public vloot: any = {};
   private apiUrl = 'http://zeilschoolwebapi.azurewebsites.net/api/'
   public gridData: any[];
-  constructor(private formBuilder: FormBuilder, private http: Http) {
+  constructor(private formBuilder: FormBuilder, private http: Http, private user: UserService) {
   }
 
   ngOnInit() {
@@ -71,5 +72,10 @@ export class MederwerkersComponent implements OnInit {
     });
     let body = JSON.stringify(schip);
     return this.http.post(this.apiUrl + 'schips', body, options).map((res: Response) => res.json()).subscribe(data => JSON.stringify(data), error => alert (error), () => console.log("finished"));
+  }
+
+  logout() {
+    this.user.setUserLoggedOut();
+    this.router.navigate(['']);
   }
 }
