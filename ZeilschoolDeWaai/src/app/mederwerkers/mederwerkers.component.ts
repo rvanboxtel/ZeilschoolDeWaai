@@ -55,23 +55,24 @@ export class MederwerkersComponent implements OnInit {
 
   public submit() {
     this.dataSaved = true;
-    console.log(this.NUMMER, this.KLASSE, this.NAAM, this.AVERIJ, this.SOORTCODE);
-    const schip: Schip = {
+    //console.log(this.NUMMER, this.KLASSE, this.NAAM, this.AVERIJ, this.SOORTCODE);
+    const schips: Schip = {
       NUMMER: this.NUMMER,
       KLASSE: this.KLASSE,
       NAAM: this.NAAM,
       AVERIJ: this.AVERIJ,
       SOORTCODE: this.SOORTCODE
     }
-    this.addSchip(schip);
+    this.addSchip(schips);
     this.close();
   }
   addSchip(schip: any) {
-    let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({
       headers: headers
     });
     let body = JSON.stringify(schip);
+    console.log(JSON.parse(body));
     return this.http.post(this.apiUrl + 'schips', body, options).map((res: Response) => res.json()).subscribe(data => JSON.stringify(data), error => alert (error), () => console.log("finished"));
   }
 
