@@ -27,6 +27,7 @@ export class MedewerkersComponent implements OnInit {
   SOORTCODE;
   NewOrEdit;
   selectedValue;
+  message;
   public klasses: any = {};
   public cursussen: any = {};
   /** mederwerkers ctor */
@@ -66,7 +67,7 @@ export class MedewerkersComponent implements OnInit {
   public edit(value) {
     this.opened = true;
     this.NUMMER = value.NUMMER,
-      this.KLASSE = this.klasses[value.KLASSE -1],
+      this.KLASSE = this.klasses[value.KLASSE - 1],
       this.NAAM = value.NAAM,
       this.AVERIJ = value.AVERIJ,
       this.SOORTCODE = this.cursussen[value.SOORTCODE - 1];
@@ -84,8 +85,12 @@ export class MedewerkersComponent implements OnInit {
       AVERIJ: this.AVERIJ,
       SOORTCODE: this.SOORTCODE.SOORTCODE
     }
-    this.addSchip(schips);
-    this.close();
+    if (this.NUMMER !== null && this.KLASSE.KLASSEID !== null && this.NAAM !== null && this.SOORTCODE.SOORTCODE !== null) {
+      this.addSchip(schips);
+      this.close();
+    } else {
+      this.message = 'voer in alle gegevens'
+    }
   }
 
   save() {

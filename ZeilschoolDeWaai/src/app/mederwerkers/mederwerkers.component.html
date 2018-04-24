@@ -31,7 +31,7 @@
                         [height]="410"
                         [navigable]="true">
               <ng-template kendoGridToolbarTemplate>
-                <button kendoButton *ngIf="!opened" (click)="open()">Add new Schip</button>
+                <button kendoButton *ngIf="!opened" (click)="open()">Nieuw schip</button>
               </ng-template>
               <kendo-grid-column field="NUMMER" editor="numeric" title="Nummer">
                 <ng-template kendoGridEditTemplate let-dataItem="dataItem">
@@ -66,8 +66,8 @@
               </kendo-grid-column>
               <kendo-grid-command-column title="command" width="220">
                 <ng-template kendoGridCellTemplate let-dataItem="dataItem">
-                  <button (click)="edit(dataItem)" type="button" class="k-button">Edit</button>
-                  <button (click)="verwijdergegeven(dataItem.NUMMER)" type="button" class="k-button">Remove</button>
+                  <button (click)="edit(dataItem)" type="button" class="k-button">Aanpassen</button>
+                  <button (click)="verwijdergegeven(dataItem.NUMMER)" type="button" class="k-button">Verwijderen</button>
                 </ng-template>
               </kendo-grid-command-column>
             </kendo-grid>
@@ -84,7 +84,7 @@
 <kendo-window title="Schip Aanmaken/bewerken" *ngIf="opened" (close)="close()" [minWidth]="250" [width]="450">
 
   <form class="k-form">
-
+    {{message}}
     <label>
       <span>Nummer schip</span>
       <input [(ngModel)]="NUMMER" [disabled]="NewOrEdit === 'edit'" name="Nummer" type="number" />
@@ -115,7 +115,7 @@
     <div class="text-right">
       <button type="button" class="k-button" (click)="close()">Cancel</button>
       <button type="button" *ngIf="NewOrEdit === 'new'" class="k-button k-primary" (click)="submit()">
-        Submit
+        Toevoegen
       </button>
       <button type="button" *ngIf="NewOrEdit === 'edit'" class="k-button k-primary" (click)="save()">Opslaan</button>
     </div>
