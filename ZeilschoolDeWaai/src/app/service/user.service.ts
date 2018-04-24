@@ -8,7 +8,7 @@ export class UserService {
   public username;
   private password;
   user;
-  private apiUrl = 'http://zeilschoolwebapi.azurewebsites.net/api/werknemers/'
+  private apiUrl = 'https://zeilschoolwebapi.azurewebsites.net/api/werknemers/'
   constructor(private http: Http) {
     this.isUserLoggedIn = false;
   }

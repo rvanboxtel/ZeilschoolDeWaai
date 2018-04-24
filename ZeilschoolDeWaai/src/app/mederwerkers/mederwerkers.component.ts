@@ -31,7 +31,7 @@ export class MedewerkersComponent implements OnInit {
   public cursussen: any = {};
   /** mederwerkers ctor */
   public vloot: any = {};
-  private apiUrl = 'http://zeilschoolwebapi.azurewebsites.net/api/'
+  private apiUrl = 'https://zeilschoolwebapi.azurewebsites.net/api/'
   public gridData: any[];
   constructor(private formBuilder: FormBuilder, private http: Http, private user: UserService, private router: Router) {
   }
