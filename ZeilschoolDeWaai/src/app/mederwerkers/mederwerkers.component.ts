@@ -66,10 +66,10 @@ export class MedewerkersComponent implements OnInit {
   public edit(value) {
     this.opened = true;
     this.NUMMER = value.NUMMER,
-      this.KLASSE = this.klasses[value.KLASSE],
+      this.KLASSE = this.klasses[value.KLASSE -1],
       this.NAAM = value.NAAM,
       this.AVERIJ = value.AVERIJ,
-      this.SOORTCODE = this.cursussen[value.SOORTCODE];
+      this.SOORTCODE = this.cursussen[value.SOORTCODE - 1];
 
     this.NewOrEdit = 'edit';
   }
