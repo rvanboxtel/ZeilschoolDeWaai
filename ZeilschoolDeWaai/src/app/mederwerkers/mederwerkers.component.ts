@@ -17,7 +17,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./mederwerkers.component.scss']
 })
 /** mederwerkers component*/
-export class MederwerkersComponent implements OnInit {
+export class MedewerkersComponent implements OnInit {
   public opened = false;
   public dataSaved = false;
   NUMMER;
@@ -104,7 +104,7 @@ export class MederwerkersComponent implements OnInit {
     console.log(this.vloot);
     this.http.post(this.apiUrl + 'schips', body, options)
       .map((res: Response) => res.json())
-      .subscribe(data => JSON.stringify(data),
+      .subscribe(data => data,
       error => alert(error),
       () => { console.log("finished"); this.getData() });
   }

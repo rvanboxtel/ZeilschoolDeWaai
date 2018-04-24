@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomepageComponent } from './homepage/homepage.component';
 import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
-import { MederwerkersComponent } from './mederwerkers/mederwerkers.component';
+import { MedewerkersComponent } from './mederwerkers/mederwerkers.component';
 import { AuthguardGuard } from './service/authguard.guard';
 // Alle pagina's om erheen te komen
 const routes: Routes = [
@@ -13,7 +13,7 @@ const routes: Routes = [
     path: 'login', component: LoginComponent
   },
   {
-    path: 'medewerkers', component: MederwerkersComponent,
+    path: 'medewerkers', component: MedewerkersComponent,
     canActivate: [AuthguardGuard],
   },
 

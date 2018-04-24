@@ -1,21 +1,21 @@
 ﻿/// <reference path="../../../node_modules/@types/jasmine/index.d.ts" />
 import { TestBed, async, ComponentFixture, ComponentFixtureAutoDetect } from '@angular/core/testing';
 import { BrowserModule, By } from "@angular/platform-browser";
-import { MederwerkersComponent } from './mederwerkers.component';
+import { MedewerkersComponent } from './mederwerkers.component';
 
-let component: MederwerkersComponent;
-let fixture: ComponentFixture<MederwerkersComponent>;
+let component: MedewerkersComponent;
+let fixture: ComponentFixture<MedewerkersComponent>;
 
 describe('mederwerkers component', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ MederwerkersComponent ],
+            declarations: [ MedewerkersComponent ],
             imports: [ BrowserModule ],
             providers: [
                 { provide: ComponentFixtureAutoDetect, useValue: true }
             ]
         });
-        fixture = TestBed.createComponent(MederwerkersComponent);
+        fixture = TestBed.createComponent(MedewerkersComponent);
         component = fixture.componentInstance;
     }));
 

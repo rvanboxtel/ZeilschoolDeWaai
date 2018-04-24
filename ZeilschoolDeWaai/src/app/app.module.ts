@@ -16,7 +16,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { ContactComponent } from './contact/contact.component';
 import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
-import { MederwerkersComponent } from './mederwerkers/mederwerkers.component';
+import { MedewerkersComponent } from './mederwerkers/mederwerkers.component';
 import { UserService } from './service/user.service';
 import { AuthguardGuard } from './service/authguard.guard';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
@@ -34,7 +34,7 @@ import { DialogModule } from '@progress/kendo-angular-dialog';
     ContactComponent,
     FooterComponent,
     LoginComponent,
-    MederwerkersComponent
+    MedewerkersComponent
   ],
   imports: [
     BrowserModule,
