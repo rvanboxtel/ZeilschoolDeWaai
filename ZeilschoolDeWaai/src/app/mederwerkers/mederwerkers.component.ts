@@ -26,6 +26,9 @@ export class MedewerkersComponent implements OnInit {
   AVERIJ;
   SOORTCODE;
   NewOrEdit;
+  selectedValue;
+  public klasses: any = {};
+  public cursussen: any = {};
   /** mederwerkers ctor */
   public vloot: any = {};
   private apiUrl = 'http://zeilschoolwebapi.azurewebsites.net/api/'
@@ -40,7 +43,13 @@ export class MedewerkersComponent implements OnInit {
   public getData() {
     this.http.get(this.apiUrl + 'schips')
       .map((res: Response) => res.json())
-      .subscribe(data => { this.vloot = data;});
+      .subscribe(data => { this.vloot = data; });
+    this.http.get(this.apiUrl + 'schipklasses')
+      .map((res: Response) => res.json())
+      .subscribe(data => { this.klasses = data; });
+    this.http.get(this.apiUrl + 'soortcursus')
+      .map((res: Response) => res.json())
+      .subscribe(data => { this.cursussen = data; });
   }
   // een nieuw schip maken
 
@@ -57,10 +66,10 @@ export class MedewerkersComponent implements OnInit {
   public edit(value) {
     this.opened = true;
     this.NUMMER = value.NUMMER,
-      this.KLASSE = value.KLASSE,
+      this.KLASSE = this.klasses[value.KLASSE],
       this.NAAM = value.NAAM,
       this.AVERIJ = value.AVERIJ,
-      this.SOORTCODE = value.SOORTCODE;
+      this.SOORTCODE = this.cursussen[value.SOORTCODE];
 
     this.NewOrEdit = 'edit';
   }
@@ -70,10 +79,10 @@ export class MedewerkersComponent implements OnInit {
     //console.log(this.NUMMER, this.KLASSE, this.NAAM, this.AVERIJ, this.SOORTCODE);
     const schips: Schip = {
       NUMMER: this.NUMMER,
-      KLASSE: this.KLASSE,
+      KLASSE: this.KLASSE.KLASSEID,
       NAAM: this.NAAM,
       AVERIJ: this.AVERIJ,
-      SOORTCODE: this.SOORTCODE
+      SOORTCODE: this.SOORTCODE.SOORTCODE
     }
     this.addSchip(schips);
     this.close();
@@ -82,10 +91,10 @@ export class MedewerkersComponent implements OnInit {
   save() {
     const schips: Schip = {
       NUMMER: this.NUMMER,
-      KLASSE: this.KLASSE,
+      KLASSE: this.KLASSE.KLASSEID,
       NAAM: this.NAAM,
       AVERIJ: this.AVERIJ,
-      SOORTCODE: this.SOORTCODE
+      SOORTCODE: this.SOORTCODE.SOORTCODE
     }
     this.close();
     return this.http.put(this.apiUrl + 'schips/' + this.NUMMER, schips)
@@ -100,7 +109,6 @@ export class MedewerkersComponent implements OnInit {
       headers: headers
     });
     let body = schip;
-    console.log(this.vloot);
     this.http.post(this.apiUrl + 'schips', body, options)
       .map((res: Response) => res.json())
       .subscribe(data => data,
@@ -108,7 +116,6 @@ export class MedewerkersComponent implements OnInit {
       () => { this.getData() });
   }
   verwijdergegeven(value) {
-    console.log(value);
     return this.http.delete(this.apiUrl + 'schips/' + value)
       .subscribe(data => JSON.stringify(data),
       error => alert(error),

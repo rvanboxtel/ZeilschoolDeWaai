@@ -38,10 +38,7 @@
                   <input [(ngModel)]="dataItem.NUMMER" [disabled]="isNew ? false : true " kendoGridFocusable name="Nummer" class="k-textbox" type="number" required />
                 </ng-template>
               </kendo-grid-column>
-              <kendo-grid-column field="KLASSE" editor="numeric" title="Klasse">
-                <ng-template kendoGridEditTemplate let-dataItem="dataItem">
-                  <input [(ngModel)]="dataItem.KLASSE" kendoGridFocusable name="Klasse" class="k-textbox" />
-                </ng-template>
+              <kendo-grid-column field="KLASSE" title="Klasse">
               </kendo-grid-column>
               <kendo-grid-column field="NAAM" title="Naam">
                 <ng-template kendoGridEditTemplate let-dataItem="dataItem">
@@ -94,13 +91,9 @@
     </label>
     <label>
       <span>Klasse schip</span>
-      <input [(ngModel)]="KLASSE"
-             name="KLASSE"
-             required
-             min="1"
-             max="3"
-             class="k-textbox"
-             type="number" />
+      <kendo-dropdownlist name="klasse" [data]="klasses" [(ngModel)]="KLASSE" [textField]="'NAAM'" [valueField]="'KLASSEID'">
+
+      </kendo-dropdownlist>
     </label>
     <label>
       <span>Naam schip</span>
@@ -115,13 +108,9 @@
     </label>
     <label>
       <span>Soortcode</span>
-      <input [(ngModel)]="SOORTCODE"
-             name="Soortcode"
-             required
-             min="1"
-             max="3"
-             class="k-textbox"
-             type="number" />
+      <kendo-dropdownlist name="SoortCursus" [data]="cursussen" [(ngModel)]="SOORTCODE" [textField]="'CURSUSSOORT'" [valueField]="'SOORTCODE'">
+
+      </kendo-dropdownlist>
     </label>
     <div class="text-right">
       <button type="button" class="k-button" (click)="close()">Cancel</button>
