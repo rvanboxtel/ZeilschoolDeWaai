@@ -40,7 +40,7 @@ export class MedewerkersComponent implements OnInit {
   public getData() {
     this.http.get(this.apiUrl + 'schips')
       .map((res: Response) => res.json())
-      .subscribe(data => { this.vloot = data; console.log(this.vloot) });
+      .subscribe(data => { this.vloot = data;});
   }
   // een nieuw schip maken
 
@@ -63,7 +63,6 @@ export class MedewerkersComponent implements OnInit {
       this.SOORTCODE = value.SOORTCODE;
 
     this.NewOrEdit = 'edit';
-    console.log(value);
   }
 
   public submit() {
@@ -92,7 +91,7 @@ export class MedewerkersComponent implements OnInit {
     return this.http.put(this.apiUrl + 'schips/' + this.NUMMER, schips)
       .subscribe(data => JSON.stringify(data),
       error => alert(error),
-      () => { console.log("finished"); this.getData() });
+      () => { this.getData() });
 
   }
   addSchip(schip: any) {
@@ -106,14 +105,14 @@ export class MedewerkersComponent implements OnInit {
       .map((res: Response) => res.json())
       .subscribe(data => data,
       error => alert(error),
-      () => { console.log("finished"); this.getData() });
+      () => { this.getData() });
   }
   verwijdergegeven(value) {
     console.log(value);
     return this.http.delete(this.apiUrl + 'schips/' + value)
       .subscribe(data => JSON.stringify(data),
       error => alert(error),
-      () => { console.log("finished"), this.getData() });
+      () => { console.log(), this.getData() });
   }
   logout() {
     this.user.setUserLoggedOut();
