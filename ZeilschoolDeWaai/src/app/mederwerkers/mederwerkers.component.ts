@@ -162,7 +162,7 @@ export class MedewerkersComponent implements OnInit {
       .subscribe(data => { console.log(data) }, error => {
         console.log(error);
         this.http.delete(this.apiUrl + 'cursus/' + value).subscribe(data => JSON.stringify(data),
-          error => { },
+          error => { alert('U kunt geen cursussen met inschrijvingen verwijderen.')},
           () => { console.log(), this.getCursus() });
       });
   }
