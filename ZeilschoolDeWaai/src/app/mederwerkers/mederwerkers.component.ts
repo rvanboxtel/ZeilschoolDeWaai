@@ -32,6 +32,7 @@ export class MedewerkersComponent implements OnInit {
   public cursussen: any = {};
   public cursus: any = {};
   public cursuscursist: any = {};
+  public kendoData: any = {};
   /** mederwerkers ctor */
   public vloot: any = {};
   public position: 'top' | 'bottom' | 'both' = 'top';
@@ -42,21 +43,31 @@ export class MedewerkersComponent implements OnInit {
 
   ngOnInit() {
     this.getData();
+    this.positionChange();
+    
   }
 
   public getData() {
-    this.http.get(this.apiUrl + 'schips')
-      .map((res: Response) => res.json())
-      .subscribe(data => { this.vloot = data; });
-    this.http.get(this.apiUrl + 'schipklasses')
-      .map((res: Response) => res.json())
-      .subscribe(data => { this.klasses = data; });
+    this.getSchepen();
+    this.getCursussen();
     this.http.get(this.apiUrl + 'soortcursus')
       .map((res: Response) => res.json())
       .subscribe(data => { this.cursussen = data; });
+
+  }
+  public getSchepen() {
+    this.http.get(this.apiUrl + 'schips')
+      .map((res: Response) => res.json())
+      .subscribe(data => { this.vloot = data; this.kendoData = this.vloot; });
+    this.http.get(this.apiUrl + 'schipklasses')
+      .map((res: Response) => res.json())
+      .subscribe(data => { this.klasses = data; });
+  }
+
+  public getCursussen() {
     this.http.get(this.apiUrl + 'cursistcursus')
       .map((res: Response) => res.json())
-      .subscribe(data => { this.cursuscursist = data; });
+      .subscribe(data => { this.cursuscursist.push(data) });
     this.http.get(this.apiUrl + 'cursus')
       .map((res: Response) => res.json())
       .subscribe(data => { this.cursus = data; });
@@ -66,7 +77,9 @@ export class MedewerkersComponent implements OnInit {
   public close() {
     this.opened = false;
   }
-
+  public positionChange(): void {
+    this.position = 'both';
+  }
   public open() {
     this.opened = true;
     this.NewOrEdit = 'new';
@@ -135,8 +148,25 @@ export class MedewerkersComponent implements OnInit {
       error => alert(error),
       () => { console.log(), this.getData() });
   }
+
+  verwijdercursus(value) {
+    console.log(value);
+  }
   logout() {
     this.user.setUserLoggedOut();
     this.router.navigate(['']);
+  }
+  public onTabSelect(e) {
+    console.log(e.title);
+    if (e.title === "Overzicht cursussen") {
+      this.http.get(this.apiUrl + 'cursus')
+        .map((res: Response) => res.json())
+        .subscribe(data => { this.kendoData = data; })
+    }
+    if (e.title === "Overzicht schepen") {
+      this.http.get(this.apiUrl + 'schips')
+        .map((res: Response) => res.json())
+        .subscribe(data => { this.kendoData = data; });
+    }
   }
 }

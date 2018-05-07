@@ -16,9 +16,56 @@
 <div class="inhoud">
 
   <!-- Verschillende tabstrips om ervoor te zorgen dat je kan kiezen waaruit -->
-  <kendo-tabstrip>
+  <kendo-tabstrip (tabSelect)="onTabSelect($event)">
     <kendo-tabstrip-tab [title]="'Overzicht cursisten'" [disabled]="true"></kendo-tabstrip-tab>
-    <kendo-tabstrip-tab [title]="'Overzicht cursussen'" [disabled]="true"></kendo-tabstrip-tab>
+    <kendo-tabstrip-tab [title]="'Overzicht cursussen'" >
+      <ng-template kendoTabContent>
+        <!-- Een grid met de mogelijkheid om items toe te voegen, aan te passen en verwijderen -->
+        <div *ngIf="vloot !== undefined">
+
+          <form novalidate #myForm="ngForm">
+            <kendo-grid [pageable]="true" [resizable]="true" [sortable]="true"
+                        [kendoGridBinding]="kendoData"
+                        [pageSize]="10"
+                        [height]="410"
+                        [navigable]="true">
+              <ng-template kendoGridToolbarTemplate [position]="position">
+                <button [disabled]="true" kendoButton *ngIf="!opened" (click)="open()">Nieuw</button>
+              </ng-template>
+              <kendo-grid-column field="CURSUSCODE" editor="numeric" title="Cursuscode">
+                <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+                  <input [(ngModel)]="dataItem.CURSUSCODE" [disabled]="isNew ? false : true " kendoGridFocusable name="CURSUSCODE" class="k-textbox" type="number" required />
+                </ng-template>
+              </kendo-grid-column>
+              <kendo-grid-column field="BEGINDATUM" title="Begindatum">
+              </kendo-grid-column>
+              <kendo-grid-column field="EINDDATUM" title="Einddatum">
+              </kendo-grid-column>
+              <kendo-grid-column field="SOORTCODE" editor="numeric" title="Soortcode">
+                <ng-template kendoGridEditTemplate let-dataItem="dataItem">
+                  <input [(ngModel)]="dataItem.SOORTCODE"
+                         kendoGridFocusable
+                         name="Soortcode"
+                         required
+                         min="1"
+                         max="3"
+                         class="k-textbox"
+                         type="number" />
+                </ng-template>
+              </kendo-grid-column>
+              <kendo-grid-column field="PRIJS" title="Prijs">
+              </kendo-grid-column>
+              <kendo-grid-command-column title="command" width="220">
+                <ng-template kendoGridCellTemplate let-dataItem="dataItem">
+                  <button [disabled]="true"  (click)="edit(dataItem)" type="button" class="k-button">Aanpassen</button>
+                  <button (click)="verwijdercursus(dataItem.CURSUSCODE)" type="button" class="k-button">Verwijderen</button>
+                </ng-template>
+              </kendo-grid-command-column>
+            </kendo-grid>
+          </form>
+        </div>
+      </ng-template>
+    </kendo-tabstrip-tab>
     <kendo-tabstrip-tab [title]="'Overzicht schepen'" [selected]="true">
       <ng-template kendoTabContent>
         <!-- Een grid met de mogelijkheid om items toe te voegen, aan te passen en verwijderen -->
@@ -26,7 +73,7 @@
 
           <form novalidate #myForm="ngForm">
             <kendo-grid [pageable]="true" [resizable]="true" [sortable]="true"
-                        [kendoGridBinding]="vloot"
+                        [kendoGridBinding]="kendoData"
                         [pageSize]="10"
                         [height]="410"
                         [navigable]="true">
