@@ -30,8 +30,11 @@ export class MedewerkersComponent implements OnInit {
   message;
   public klasses: any = {};
   public cursussen: any = {};
+  public cursus: any = {};
+  public cursuscursist: any = {};
   /** mederwerkers ctor */
   public vloot: any = {};
+  public position: 'top' | 'bottom' | 'both' = 'top';
   private apiUrl = 'https://zeilschoolwebapi.azurewebsites.net/api/'
   public gridData: any[];
   constructor(private formBuilder: FormBuilder, private http: Http, private user: UserService, private router: Router) {
@@ -51,6 +54,12 @@ export class MedewerkersComponent implements OnInit {
     this.http.get(this.apiUrl + 'soortcursus')
       .map((res: Response) => res.json())
       .subscribe(data => { this.cursussen = data; });
+    this.http.get(this.apiUrl + 'cursistcursus')
+      .map((res: Response) => res.json())
+      .subscribe(data => { this.cursuscursist = data; });
+    this.http.get(this.apiUrl + 'cursus')
+      .map((res: Response) => res.json())
+      .subscribe(data => { this.cursus = data; });
   }
   // een nieuw schip maken
 

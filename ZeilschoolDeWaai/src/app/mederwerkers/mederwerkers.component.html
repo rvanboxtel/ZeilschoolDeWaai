@@ -30,7 +30,7 @@
                         [pageSize]="10"
                         [height]="410"
                         [navigable]="true">
-              <ng-template kendoGridToolbarTemplate>
+              <ng-template kendoGridToolbarTemplate [position]="position">
                 <button kendoButton *ngIf="!opened" (click)="open()">Nieuw schip</button>
               </ng-template>
               <kendo-grid-column field="NUMMER" editor="numeric" title="Nummer">
