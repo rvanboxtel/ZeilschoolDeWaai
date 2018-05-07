@@ -44,7 +44,7 @@ export class MedewerkersComponent implements OnInit {
   ngOnInit() {
     this.getData();
     this.positionChange();
-    
+
   }
 
   public getData() {
@@ -71,6 +71,11 @@ export class MedewerkersComponent implements OnInit {
     this.http.get(this.apiUrl + 'cursus')
       .map((res: Response) => res.json())
       .subscribe(data => { this.cursus = data; });
+  }
+  public getCursus() {
+    this.http.get(this.apiUrl + 'cursus')
+      .map((res: Response) => res.json())
+      .subscribe(data => { this.kendoData = data; });
   }
   // een nieuw schip maken
 
@@ -150,7 +155,16 @@ export class MedewerkersComponent implements OnInit {
   }
 
   verwijdercursus(value) {
-    console.log(value);
+    console.log(value.CURSUSCODE);
+
+    this.http.get(this.apiUrl + 'cursistcursus/' + value)
+      .map((res: Response) => res.json())
+      .subscribe(data => { console.log(data) }, error => {
+        console.log(error);
+        this.http.delete(this.apiUrl + 'cursus/' + value).subscribe(data => JSON.stringify(data),
+          error => { },
+          () => { console.log(), this.getCursus() });
+      });
   }
   logout() {
     this.user.setUserLoggedOut();
